@@ -1,28 +1,28 @@
 {#
-! Malconfig fra Atea best practice for Sporveien access-switcher
+! Malconfig fra Atea best practice for Catalyst access-switcher
 ! Basert på Cisco BP docs, erfaring, Voodo, og litt IPA.
-! Versjon 2.0 20150306 - Øyvind Ellefsen
+! Versjon 2.1 201503025 - Øyvind Ellefsen
 !
 ! Dette er en Jinja2 mal, for bruk i gencfg.py script. Variable data hentes fra data.csv fil. 
 ! 
 ! Fyll inn variablene øverst først, resten er cut&paste på det aller meste av IOS, switch og router.
 ! Config er ikke kompatibel med IOS-XR, eller NXOS
 
-! Unike variabler per device
+! Unike variabler per device, verdier hentes fra data.csv
 !  HOSTNAME 		Hostnavn, uten domene, ikke space, maks 15 tegn
 !  MGMTVLAN			VLAN for management switch (1-4 siffer)
 !  MGMTIP			IP for management interface, 4 oktetter
 !  MGMTSUBNET		Subnet for management interface, 4 oktetter
 !  MGMTGW			Default GW for management nettet, 4 oktetter
 
-! Statiske variabler som oftest er like for alle devicer i et nett
+! Statiske variabler som oftest er like for alle devicer i et nett, verdier hentes fra data.csv
 !  DOMAIN   		Domene, sett net.local om ikke annet finnes
 !  ROCOMMUNITY 		snmp-read only community
 !  RWCOMMUNITY 		snmp-rw community
 !  CONTACT 			snmp contact
 !  LOCATION 		snmp location
 !  ENABLESECRET 	Passord for enable, kun ved utfall av AAA
-!  TFTPIP 			TFTP server IP adresse (For archive av config)
+!  TFTPIP 			TFTP server IP adresse (For archive av config, software, etc)
 !  SYSLOGIP			Syslog server IP
 !  RADIUS1			AAA server 1
 !  RADIUS2			AAA server 2
