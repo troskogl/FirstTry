@@ -1,11 +1,13 @@
 # Author: Oyvind Ellefsen
-# Version 0.1
+# Version 1.1
+# For Atea workshop
 
 import os
 import jinja2
 import csv
 
-TEMPLATE_FILENAME = 'cisco.j2'
+
+TEMPLATE_FILENAME = 'template.j2'
 CSVDATA_FILENAME = 'data.csv'
 
 def get_data(row):
@@ -34,7 +36,9 @@ template = env.get_template(TEMPLATE_FILENAME)
 for row in csv.DictReader(open(CSVDATA_FILENAME)):
 	get_data(row)
 	with open(row['HOSTNAME'] + '.txt', 'w+') as f:
-		f.write(template.render(row))
+		f.write(template.render(row).encode('utf-8'))
+		print ('Writing file ' + row['HOSTNAME'] + '.txt')
+		f.close()
 
 ##
 ## all done!
