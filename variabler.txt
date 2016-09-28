@@ -1,8 +1,0 @@
-123
-management
-234
-testvlan
-345
-nyttvlan
-444
-dustevlan
